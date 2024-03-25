@@ -1,0 +1,9 @@
+[package]
+name = "stdin-count-block-sigops"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rawtx-rs = { git = "https://github.com/0xB10C/rawtx-rs.git", branch = "2024-03-fix-coinbase-witness-sigops" } 
