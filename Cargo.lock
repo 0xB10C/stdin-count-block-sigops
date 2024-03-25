@@ -65,7 +65,7 @@ checksum = "3011d1213f159867b13cfd6ac92d2cd5f1345762c63be3554e84092d85a50bbd"
 [[package]]
 name = "rawtx-rs"
 version = "0.1.7"
-source = "git+https://github.com/0xB10C/rawtx-rs.git?branch=2024-03-fix-coinbase-witness-sigops#32511212070b5eb2355085f2a35dfea96e6f754b"
+source = "git+https://github.com/0xB10C/rawtx-rs.git?branch=2024-03-fix-coinbase-witness-sigops#f5f169aed00a9834b4d515130b7c04df28639a54"
 dependencies = [
  "bitcoin",
  "hex",
