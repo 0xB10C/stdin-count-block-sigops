@@ -1,9 +1,12 @@
 use rawtx_rs::bitcoin;
+use rawtx_rs::bitcoin::Network;
 use rawtx_rs::bitcoin::hex::FromHex;
 use rawtx_rs::input::InputSigops;
 use rawtx_rs::output::OutputSigops;
 use rawtx_rs::tx::TransactionSigops;
 use std::io;
+use bitcoin_pool_identification::PoolIdentification;
+use bitcoin_pool_identification::default_data;
 
 fn deserialize_block(hex: &str) -> bitcoin::Block {
     let block_bytes = Vec::from_hex(hex).unwrap();
@@ -18,6 +21,10 @@ fn main() {
     buffer = buffer.trim().to_string();
 
     let block = deserialize_block(&buffer);
+    let pool = match block.identify_pool(Network::Bitcoin, &default_data(Network::Bitcoin)) {
+        Some(result) => result.pool.name,
+        None => String::from("Unknown"),  
+    };
     let mut block_sigops = 0;
     for tx in block.txdata.iter() {
         if VERBOSE {
@@ -31,5 +38,5 @@ fn main() {
         }
         block_sigops += tx.sigops().unwrap();
     }
-    println!("{}", block_sigops);
+    println!("{},{}", block_sigops, pool);
 }
