@@ -101,7 +101,7 @@ dependencies = [
 [[package]]
 name = "rawtx-rs"
 version = "0.1.7"
-source = "git+https://github.com/0xB10C/rawtx-rs.git?branch=2024-03-fix-coinbase-witness-sigops#f5f169aed00a9834b4d515130b7c04df28639a54"
+source = "git+https://github.com/0xB10C/rawtx-rs.git?branch=2024-03-fix-coinbase-witness-sigops#381152ee241d45ccf1ac392284885c652773c2cf"
 dependencies = [
  "bitcoin",
  "hex",

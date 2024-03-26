@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 bitcoin-pool-identification = "0.3.2"
-rawtx-rs = { git = "https://github.com/0xB10C/rawtx-rs.git", branch = "2024-03-fix-coinbase-witness-sigops" } 
+rawtx-rs = { git = "https://github.com/0xB10C/rawtx-rs.git", branch = "master" } 
