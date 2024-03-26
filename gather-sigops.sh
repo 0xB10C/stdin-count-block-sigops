@@ -9,6 +9,7 @@ END=840000
 for height in $(seq $START $END);
 do
   hash=$(curl -s "$HOST/rest/blockhashbyheight/$height.hex")
-  sigops=$(curl -s "$HOST/rest/block/$hash.hex" | ./target/release/stdin-count-block-sigops)
+  block=$(curl -s "$HOST/rest/block/$hash.hex")
+  sigops=$(echo $block | ./target/release/stdin-count-block-sigops)
   echo "$height,$hash,$sigops"
 done

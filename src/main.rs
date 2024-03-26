@@ -13,7 +13,7 @@ fn deserialize_block(hex: &str) -> bitcoin::Block {
     bitcoin::consensus::deserialize(&block_bytes).unwrap()
 }
 
-const VERBOSE: bool = false;
+const VERBOSE: bool = true;
 
 fn main() {
     let mut buffer = String::new();
@@ -28,13 +28,20 @@ fn main() {
     let mut block_sigops = 0;
     for tx in block.txdata.iter() {
         if VERBOSE {
+            //println!("txid: {}, sigops: {}", tx.txid(), tx.sigops().unwrap());
+            //println!("txid: {}, sigopsnew: {}", tx.txid(), tx.sigopsnew().unwrap());
             for input in tx.input.iter() {
-                println!("input sigops: {}", input.sigops().unwrap());
+                let old = input.sigops().unwrap();
+                let new = input.sigopsnew().unwrap();
+                //println!("input sigops: old={} new={}", old, new);
+                assert_eq!(new, old);
             }
             for output in tx.output.iter() {
-                println!("output sigops: {}", output.sigops().unwrap());
+                let old = output.sigops().unwrap();
+                let new = output.sigopsnew().unwrap();
+                // println!("output sigops: old={} new={}", old, new);
+                assert_eq!(new, old);
             }
-            println!("txid: {}, sigops: {}", tx.txid(), tx.sigops().unwrap());
         }
         block_sigops += tx.sigops().unwrap();
     }
